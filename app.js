@@ -23,7 +23,7 @@ app.use('/causes', require('./routes/cause-routes'));
 app.use('/organizations', require('./routes/organization-routes'));
 
 app.use('/', (request, response) => {
-    response.send('Home page!');
+    response.render('test.hbs');
 });
 
 app.listen(PORT, () => {
