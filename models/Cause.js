@@ -45,10 +45,6 @@ var Cause = mongoose.model('Cause', {
         type: Number,
         default: 0,
         required: true
-    },
-    finalDate: {
-        type: Date,
-        required: true
     }
 });
 

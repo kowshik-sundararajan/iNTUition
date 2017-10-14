@@ -17,8 +17,11 @@
   },
   "homepage": "https://github.com/kowshik-sundararajan/iNTUition#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "hbs": "^4.0.1"
+    "hbs": "^4.0.1",
+    "mongodb": "^2.2.33",
+    "mongoose": "^4.12.1"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
