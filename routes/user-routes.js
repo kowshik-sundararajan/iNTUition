@@ -11,9 +11,13 @@ router.get('/', (request, response) => {
 
 router.get('/:name', (request, response) => {
     users.getUser(request).then((result) => {
-        response.send(result);
+        response.render('profile');
     });
 });
+
+router.get('/:name/rewards', (request, response) => {
+    response.render('rewards');
+})
 
 
 router.post('/submit', (request, response) => {
