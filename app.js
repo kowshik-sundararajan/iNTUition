@@ -36,7 +36,7 @@ app.use('/organizations', require('./routes/organization-routes'));
 // }
 
 app.get('/', (req, response) => {
-    request('http://localhost:3000/causes/', (err, res, body) => {
+    request('https://radiant-sierra-32337.herokuapp.com/causes/', (err, res, body) => {
         if (err || res.statusCode != 200) {
             response.sendStatus(500);
         }
