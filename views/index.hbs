@@ -57,10 +57,10 @@
 								
 								<progress value="{{causes.[0].current}}" max="{{causes.[0].goal}}"> Progress</progress> 
 								<p class="goal">${{causes.[0].goal}} goal</p> 
-								<p>{{causes.[0].end}} days left</p>
+								<p>{{#diff causes.[0].start causes.[0].end}}{{/diff}} days left</p>
 								<hr/>
 								
-								<a href="#openModal">Donate Now</a> 
+								<button id="donate1" class="donate">Donate Now</button> 
 								
 							</section>
 						</div>
@@ -76,8 +76,9 @@
 								<p class="current"> <span style="font-size: 120%"><strong>${{causes.[1].current}}</strong></span> raised </p>						
 								<progress value="{{causes.[1].current}}" max="{{causes.[1].goal}}"> Progress </progress>
 								<p class="goal">${{causes.[1].goal}} goal</p> 
+								<p>{{#diff causes.[1].start causes.[1].end}}{{/diff}} days left</p>
 								<hr/>
-								<a href="#openModal">Donate Now</a>
+								<button class="donate">Donate Now</button>
 							</section>
 						</div>
 						<div class="4u 12u(mobile)">
@@ -91,14 +92,15 @@
 								<p class="current"> <span style="font-size: 120%"><strong>${{causes.[2].current}}</strong></span> raised </p>	
 								<progress value="{{causes.[2].current}}" max="{{causes.[2].goal}}"> Progress </progress>
 								<p class="goal">${{causes.[2].goal}} goal</p> 
+								<p>{{#diff causes.[2].start causes.[2].end}}{{/diff}} days left</p>
 								<hr/>
-								<a href="#openModal">Donate Now</a>
+								<button class="donate">Donate Now</button>
 							</section>
 						</div>
 						
 
 						
-						<div id="openModal" class="modalDialog">
+<!-- 						<div id="openModal" class="modalDialog">
 							<div>
 								<a href="#close" title="Close" class="close">X</a>
 								<h2>Pay Now</h2>
@@ -112,7 +114,7 @@
 							</div>
 						</div>
 					
-					</div>
+					</div> -->
 
 					<!-- <footer>
 						<ul class="actions">
@@ -128,6 +130,25 @@
 			</div>
 		</div>
 
+
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
+
+			<!-- Modal content -->
+			<div class="modal-content">
+				<p>
+					<form id="donate-form">
+						Payment Amount:
+						<input id="donationAmount" type="text" name="amount" required="true" />
+						<br>
+						<input type="submit">
+					</form>
+				</p>
+
+				<span class="close">&times;</span>
+			</div>
+
+		</div>
 
 		<!-- Footer -->
 
@@ -232,6 +253,43 @@
 	background: -webkit-linear-gradient(#fff, #999);
 	background: -o-linear-gradient(#fff, #999);
 }
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+}
+
+/* The Close Button */
+.close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
 
 .current {
 	margin-bottom: -0.5em !important;
@@ -240,4 +298,52 @@
 	margin-top: -0.7em !important;
 }
 </style>
+
+<script>
+// // Get the modal
+// var modal = document.getElementById('myModal');
+
+// // Get the button that opens the modal
+// var btn = document.getElementById("donate1");
+
+// // Get the <span> element that closes the modal
+// var span = document.getElementsByClassName("close")[0];
+
+// // When the user clicks the button, open the modal 
+// btn.onclick = function() {
+// 	modal.style.display = "block";
+// }
+
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function() {
+// 	modal.style.display = "none";
+// }
+
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+// 	if (event.target == modal) {
+// 		modal.style.display = "none";
+// 	}
+// }
+
+// $('#donate-form').on('submit', (event) => {
+// 	event.preventDefault();
+// 	var donationAmount = $('#donationAmount').val();
+
+// 	$.ajax({
+// 		url: 'http://localhost:3000/causes/update-current',
+// 		method: "POST",
+// 		data: {
+// 			name: "Dog Rescue",
+// 			current: donationAmount
+// 		},
+
+// 		success: function(data) {
+// 			console.log(data);
+// 		}
+// 	});
+// });
+</script>
+
+
 </html>

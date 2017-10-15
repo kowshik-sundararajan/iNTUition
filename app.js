@@ -13,6 +13,12 @@ var {mongoose} = require('./db/mongoose');
 
 const PORT = process.env.PORT || 3000;
 
+hbs.registerHelper('diff', (start, end) => {
+    var startDate = new Date(start);
+    var endDate = new Date(end);
+
+    return ((endDate - startDate)/86400000);
+})
 var app = express();
 
 app.set('view engine', 'hbs');
