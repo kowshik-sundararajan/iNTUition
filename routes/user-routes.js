@@ -11,7 +11,11 @@ router.get('/', (request, response) => {
 
 router.get('/:name', (request, response) => {
     users.getUser(request).then((result) => {
-        response.render('profile');
+        response.render('profile', {
+            user: result
+        });
+    }).catch((error) => {
+        response.sendStatus(500);
     });
 });
 

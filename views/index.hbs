@@ -6,7 +6,7 @@
 -->
 <html>
 <head>
-	<title>Dopetrope by HTML5 UP</title>
+	<title>GiveBack</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -21,7 +21,7 @@
 			<div id="header">
 
 				<!-- Logo -->
-				<h1><a href="index.hbs">The Game of Charity</a></h1>
+				<h1><a href="#">GiveBack</a></h1>
 
 				<!-- Nav -->
 				<nav id="nav">
@@ -37,8 +37,9 @@
 				<section id="banner">
 					<header>
 						<h2>Impact | Rewards | Efficiency </h2>
-						<p>Put your money where your mouth is.</p>
-					</header>
+						<p>Put your money where your mind is</p>
+					</header><br>
+					<a href="#intro" class="button big">Get Started</a>
 				</section>
 
 				<!-- Intro -->
@@ -48,13 +49,15 @@
 							<section class="first">
 								<i class="icon featured fa-paw"></i>
 								<header>
-									<h2>Dog Rescue</h2>
+									<h2>{{causes.[0].name}}</h2>
 								</header>
-								<p>Rescue innocent dogs who are getting abused and treated inhumanely at shelters in Delhi</p>
+								<p>{{causes.[0].description}}</p>
 								<hr/>
-								<p> Amount funded </p>
+								<p class="current"> <span style="font-size: 120%"><strong>${{causes.[0].current}}</strong></span> raised </p>
 								
-								<progress value="45" max="100"> Progress </progress>
+								<progress value="{{causes.[0].current}}" max="{{causes.[0].goal}}"> Progress</progress> 
+								<p class="goal">${{causes.[0].goal}} goal</p> 
+								<p>{{causes.[0].end}} days left</p>
 								<hr/>
 								
 								<a href="#openModal">Donate Now</a> 
@@ -66,12 +69,13 @@
 								<i class="icon featured fa-medkit"></i>
 
 								<header>
-									<h2>Vaccination Drive</h2>
+									<h2>{{causes.[1].name}}</h2>
 								</header>
-								<p> Fund a vaccination drive for poor children in Moscow </p>
+								<p>{{causes.[1].description}}</p>
 								<hr/>
-								<p> Amount funded </p>								
-								<progress value="25" max="100"> Progress </progress>
+								<p class="current"> <span style="font-size: 120%"><strong>${{causes.[1].current}}</strong></span> raised </p>						
+								<progress value="{{causes.[1].current}}" max="{{causes.[1].goal}}"> Progress </progress>
+								<p class="goal">${{causes.[1].goal}} goal</p> 
 								<hr/>
 								<a href="#openModal">Donate Now</a>
 							</section>
@@ -80,12 +84,13 @@
 							<section class="last">
 								<i class="icon featured alt2 fa-paw	"></i>
 								<header>
-									<h2>Cheetah Conservation </h2>
+									<h2>{{causes.[2].name}}</h2>
 								</header>
-								<p> Donate to help protect the last Asiatic Cheetahs in the world. </p>
+								<p>{{causes.[2].description}}</p>
 								<hr/>
-								<p> Amount funded </p>
-								<progress value="85" max="100"> Progress </progress>
+								<p class="current"> <span style="font-size: 120%"><strong>${{causes.[2].current}}</strong></span> raised </p>	
+								<progress value="{{causes.[2].current}}" max="{{causes.[2].goal}}"> Progress </progress>
+								<p class="goal">${{causes.[2].goal}} goal</p> 
 								<hr/>
 								<a href="#openModal">Donate Now</a>
 							</section>
@@ -109,7 +114,7 @@
 					
 					</div>
 
-					<footer>
+					<!-- <footer>
 						<ul class="actions">
 							<li><a href="#" class="button big">Get Started</a></li>
 							<li>     </li>
@@ -117,7 +122,7 @@
 							<li>     </li>
 							<li><a href="#" class="button alt big"> About us </a></li>
 						</ul>
-					</footer>
+					</footer> -->
 				</section>
 
 			</div>
@@ -226,6 +231,13 @@
 	background: -moz-linear-gradient(#fff, #999);
 	background: -webkit-linear-gradient(#fff, #999);
 	background: -o-linear-gradient(#fff, #999);
+}
+
+.current {
+	margin-bottom: -0.5em !important;
+}
+.goal {
+	margin-top: -0.7em !important;
 }
 </style>
 </html>

@@ -2,6 +2,7 @@ const express = require('express');
 const hbs = require('hbs');
 var bodyParser = require('body-parser');
 const axios = require('axios');
+const request = require('request');
 
 var {mongoose} = require('./db/mongoose');
 // var {User} = require('./models/User');
@@ -34,13 +35,13 @@ app.use('/organizations', require('./routes/organization-routes'));
 //     });
 // }
 
-app.use('/', (request, response) => {
-    // makeRequest().then((data) => {
-    //     response.render('index.hbs', {
-    //         causes: data
-    //     });
-    // });
-    response.render('index.hbs');
+app.get('/', (req, response) => {
+    request('http://localhost:3000/causes/', (err, res, body) => {
+        if (err || res.statusCode != 200) {
+            response.sendStatus(500);
+        }
+        response.render('index.hbs', {causes: JSON.parse(body)});
+    });
 });
 
 app.listen(PORT, () => {

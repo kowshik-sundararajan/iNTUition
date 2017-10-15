@@ -21,7 +21,7 @@
 			<div id="header">
 
 				<!-- Logo -->
-				<h1><a href="index.hbs">Kowshik S</a></h1>
+				<h1><a href="#">{{user.name}}</a></h1>
 
 				<!-- Nav -->
 				<nav id="nav">
@@ -35,10 +35,9 @@
 				<!-- Banner -->
 				<section id="banner">
 					<header>
-						<h2> Scores & Points </h2>
-						<progress value="22" max="100"></progress>
-						<p> _your XP score_ </p>
-						<p>My Reward Points: 100</p>
+						<h2> Scores &amp; Points </h2>
+						<progress value="{{user.xp}}" max="100"></progress>
+						<p>Reward Points: {{user.rewards}}</p>
 					</header>
 				</section>
 
