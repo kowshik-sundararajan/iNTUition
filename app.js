@@ -30,16 +30,6 @@ app.use('/users', require('./routes/user-routes'));
 app.use('/causes', require('./routes/cause-routes'));
 app.use('/organizations', require('./routes/organization-routes'));
 
-// var makeRequest = () => {
-//     return new Promise((resolve, reject) => {
-//         axios.get('http://localhost:3000/causes/').then((results) => {
-//             console.log(results['data']);
-//             resolve(results['data']);
-//         }).catch((error) => {
-//             reject(error);
-//         });     
-//     });
-// }
 
 app.get('/', (req, response) => {
     request('https://radiant-sierra-32337.herokuapp.com/causes/', (err, res, body) => {

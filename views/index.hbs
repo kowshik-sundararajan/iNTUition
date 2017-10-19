@@ -49,7 +49,7 @@
 							<section class="first">
 								<i class="icon featured fa-paw"></i>
 								<header>
-									<h2>{{causes.[0].name}}</h2>
+									<h2 id="header-first">{{causes.[0].name}}</h2>
 								</header>
 								<p>{{causes.[0].description}}</p>
 								<hr/>
@@ -60,7 +60,7 @@
 								<p>{{#diff causes.[0].start causes.[0].end}}{{/diff}} days left</p>
 								<hr/>
 								
-								<button id="donate1" class="donate">Donate Now</button> 
+								<button id="donate-first" class="donate">Donate Now</button> 
 								
 							</section>
 						</div>
@@ -69,7 +69,7 @@
 								<i class="icon featured fa-medkit"></i>
 
 								<header>
-									<h2>{{causes.[1].name}}</h2>
+									<h2 id="header-second">{{causes.[1].name}}</h2>
 								</header>
 								<p>{{causes.[1].description}}</p>
 								<hr/>
@@ -78,14 +78,14 @@
 								<p class="goal">${{causes.[1].goal}} goal</p> 
 								<p>{{#diff causes.[1].start causes.[1].end}}{{/diff}} days left</p>
 								<hr/>
-								<button class="donate">Donate Now</button>
+								<button id="donate-second" class="donate">Donate Now</button>
 							</section>
 						</div>
 						<div class="4u 12u(mobile)">
 							<section class="last">
 								<i class="icon featured alt2 fa-paw	"></i>
 								<header>
-									<h2>{{causes.[2].name}}</h2>
+									<h2 id="header-third">{{causes.[2].name}}</h2>
 								</header>
 								<p>{{causes.[2].description}}</p>
 								<hr/>
@@ -94,7 +94,7 @@
 								<p class="goal">${{causes.[2].goal}} goal</p> 
 								<p>{{#diff causes.[2].start causes.[2].end}}{{/diff}} days left</p>
 								<hr/>
-								<button class="donate">Donate Now</button>
+								<button id="donate-third" class="donate">Donate Now</button>
 							</section>
 						</div>
 						
@@ -136,6 +136,7 @@
 
 			<!-- Modal content -->
 			<div class="modal-content">
+				<h2 id="donate-header"></h2>
 				<p>
 					<form id="donate-form">
 						Payment Amount:
@@ -300,49 +301,69 @@
 </style>
 
 <script>
-// // Get the modal
-// var modal = document.getElementById('myModal');
+// Get the modal
+var modal = document.getElementById('myModal');
 
-// // Get the button that opens the modal
-// var btn = document.getElementById("donate1");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
-// // Get the <span> element that closes the modal
-// var span = document.getElementsByClassName("close")[0];
 
-// // When the user clicks the button, open the modal 
-// btn.onclick = function() {
-// 	modal.style.display = "block";
-// }
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+	modal.style.display = "none";
+}
 
-// // When the user clicks on <span> (x), close the modal
-// span.onclick = function() {
-// 	modal.style.display = "none";
-// }
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+	if (event.target == modal) {
+		modal.style.display = "none";
+	}
+}
 
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-// 	if (event.target == modal) {
-// 		modal.style.display = "none";
-// 	}
-// }
+var url = window.location.origin + '/causes/update-current';
+var name;
+var donationAmount;
 
-// $('#donate-form').on('submit', (event) => {
-// 	event.preventDefault();
-// 	var donationAmount = $('#donationAmount').val();
+$('#donate-first').on('click', () => {
+	name = $('#header-first').html();
+	$('#donate-header').html(name);
+	modal.style.display = "block";
+});
 
-// 	$.ajax({
-// 		url: 'http://localhost:3000/causes/update-current',
-// 		method: "POST",
-// 		data: {
-// 			name: "Dog Rescue",
-// 			current: donationAmount
-// 		},
+$('#donate-second').on('click', () => {
+	name = $('#header-second').html();
+	$('#donate-header').html(name);
+	modal.style.display = "block";
+});
 
-// 		success: function(data) {
-// 			console.log(data);
-// 		}
-// 	});
-// });
+$('#donate-third').on('click', () => {
+	name = $('#header-third').html();
+	$('#donate-header').html(name);
+	modal.style.display = "block";
+});
+
+$('#donate-form').on('submit', (event) => {
+	event.preventDefault();
+
+	donationAmount = $('#donationAmount').val();
+
+	console.log("Name: " + name + "Donation Amount: " + donationAmount)
+
+	$.ajax({
+		url: url,
+		method: "POST",
+		data: {
+			name: name,
+			current: donationAmount
+		},
+
+		success: function(data) {
+			console.log(data);
+			name = "";
+			window.location.reload();
+		}
+	});
+});
 </script>
 
 
