@@ -66,11 +66,12 @@ var addContributor = (request) => {
 };
 
 var updateCurrent = (request) => {
+
     return new Promise((resolve, reject) => {
-        Cause.findOneAndUpdate({name: "Dog Rescue"}, {new: true}, 
+        Cause.findOneAndUpdate({name: request.body.name},
         {
             $inc: {
-                "current": request.body.current
+                current: request.body.current
             }
         }).then((result) => {
             console.log(result);
