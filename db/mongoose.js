@@ -1,11 +1,19 @@
 var mongoose = require('mongoose');
-var env = require('../env.json');
+
+var mode = 'prod';
+if (mode == 'dev') {
+  var env = require('../env.json');
+  var DB_USERNAME = env['DB_USERNAME'];
+  var DB_PASSWORD = env['DB_PASSWORD'];
+} else {
+    var DB_USERNAME = process.env.DB_USERNAME;
+    var DB_PASSWORD = process.env.DB_PASSWORD;
+}
+
 
 // Making mongoose use the default promise and not a third-party promise
 mongoose.Promise = global.Promise;
 
-var DB_USERNAME = process.env.DB_USERNAME || env['DB_USERNAME'];
-var DB_PASSWORD = process.env.DB_PASSWORD || env['DB_PASSWORD'];
 
 var uri = `mongodb://${DB_USERNAME}:${DB_PASSWORD}@ds119675.mlab.com:19675/intuition`;
 global.db = mongoose.connect(uri, {
